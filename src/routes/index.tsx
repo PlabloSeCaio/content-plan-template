@@ -77,6 +77,28 @@ function Index() {
           look at month-end, the 7 carousels, 5 blog posts and 4 newsletters — each with its
           companion story.
         </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button asChild>
+            <a
+              href="https://docs.google.com/document/d/100xp3AM4VONf4Gdf5EKyArRbnleqgmEjYSHgJ0u1LgE/edit?tab=t.0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Content Plan
+            </a>
+          </Button>
+          <Button asChild variant="outline">
+            <a
+              href="https://paywisehub.coordenadas.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Marketing Hub
+            </a>
+          </Button>
+        </div>
       </section>
 
       {/* Grid snapshot */}

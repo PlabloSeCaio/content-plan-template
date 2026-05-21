@@ -137,24 +137,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex items-center justify-center gap-6 border-b border-border/40 bg-muted/30 px-6 py-2 text-xs text-muted-foreground">
-        <a
-          href="https://docs.google.com/document/d/100xp3AM4VONf4Gdf5EKyArRbnleqgmEjYSHgJ0u1LgE/edit?tab=t.0"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition hover:text-foreground"
-        >
-          Content Plan
-        </a>
-        <a
-          href="https://paywisehub.coordenadas.co/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition hover:text-foreground"
-        >
-          Marketing Hub
-        </a>
-      </div>
       <Outlet />
     </QueryClientProvider>
   );
