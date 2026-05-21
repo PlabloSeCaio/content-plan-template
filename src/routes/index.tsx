@@ -42,6 +42,7 @@ function Index() {
     aspect: "square" | "portrait" | "landscape" | "post";
     downloadFilename?: string;
   } | null>(null);
+  const [copiedEmailId, setCopiedEmailId] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen scroll-smooth bg-background text-foreground">
@@ -305,24 +306,17 @@ function Index() {
       <Section
         id="newsletters"
         title="Newsletters"
-        subtitle="4 newsletters going out this month. Each banner is the full preview — copy is baked into the image."
+        subtitle="4 newsletters going out this month. Preview the email copy below each banner."
       >
         <div className="grid gap-10 md:grid-cols-2">
           {newsletters.map((n) => (
             <article key={n.id} className="flex flex-col">
-              <div className="flex items-baseline justify-between">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  Email {n.id}
-                </p>
-                {n.docUrl && n.docUrl !== "#" && (
-                  <Button asChild variant="ghost" size="sm" className="h-auto px-2 py-1 text-xs">
-                    <a href={n.docUrl} target="_blank" rel="noreferrer">
-                      Read full newsletter <ExternalLink className="ml-1 h-3 w-3" />
-                    </a>
-                  </Button>
-                )}
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Email {n.id}
+              </p>
               <h3 className="mt-1 mb-3 text-lg font-semibold tracking-tight">{n.title}</h3>
+
+              {/* Banner image */}
               <button
                 type="button"
                 onClick={() =>
@@ -362,31 +356,38 @@ function Index() {
                   <ImageOrPlaceholder src={n.banner} alt={n.title} aspect="landscape" />
                 )}
               </button>
-              <div className="mt-3 flex items-center justify-between gap-4">
-                <p className="text-sm text-muted-foreground">Instagram Story</p>
-                <button
-                  type="button"
-                  onClick={() =>
-                    n.story &&
-                    setLightbox({
-                      src: n.story,
-                      alt: `${n.title} story`,
-                      aspect: "portrait",
-                      downloadFilename: `paywise-newsletter-${n.id}-story.png`,
-                    })
-                  }
-                  className="w-16 shrink-0"
-                  aria-label={`Open ${n.title} story`}
-                >
-                  <ImageOrPlaceholder
-                    src={n.story}
-                    alt={`${n.title} story`}
-                    aspect="portrait"
-                    label="Story"
-                    downloadFilename={`paywise-newsletter-${n.id}-story.png`}
-                  />
-                </button>
-              </div>
+
+              {/* Email body preview */}
+              {n.body && (
+                <div className="mt-4 rounded-xl border border-border bg-muted/30 p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-medium text-muted-foreground">Email preview</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(n.body);
+                        setCopiedEmailId(n.id);
+                        setTimeout(() => setCopiedEmailId(null), 2000);
+                      }}
+                      className="flex items-center gap-1 text-xs text-muted-foreground transition hover:text-foreground"
+                    >
+                      {copiedEmailId === n.id ? "Copied!" : "Copy to clipboard"}
+                    </button>
+                  </div>
+                  <div className="whitespace-pre-wrap text-sm text-foreground leading-relaxed">
+                    {n.body}
+                  </div>
+                </div>
+              )}
+
+              {/* CTA button */}
+              {n.ctaUrl && (
+                <Button asChild className="mt-3 w-full">
+                  <a href={n.ctaUrl} target="_blank" rel="noopener noreferrer">
+                    {n.ctaText} <ExternalLink className="h-4 w-4" />
+                  </a>
+                </Button>
+              )}
             </article>
           ))}
         </div>

@@ -54,14 +54,15 @@ import blog4Story from "@/assets/paywise/blogs/blog4-story.png";
 import blog5Banner from "@/assets/paywise/blogs/blog5-banner.png";
 import blog5Story from "@/assets/paywise/blogs/blog5-story.png";
 
-import email1Banner from "@/assets/paywise/newsletters/email1-banner.png";
 import email1Story from "@/assets/paywise/newsletters/email1-story.png";
-import email2Banner from "@/assets/paywise/newsletters/email2-banner.png";
 import email2Story from "@/assets/paywise/newsletters/email2-story.png";
-import email3Banner from "@/assets/paywise/newsletters/email3-banner.png";
 import email3Story from "@/assets/paywise/newsletters/email3-story.png";
-import email4Banner from "@/assets/paywise/newsletters/email4-banner.png";
 import email4Story from "@/assets/paywise/newsletters/email4-story.png";
+
+import nl1Banner from "@/assets/paywise/newsletters/newsletter.1.png";
+import nl2Banner from "@/assets/paywise/newsletters/newsletter.2.png";
+import nl3Banner from "@/assets/paywise/newsletters/newsletter.3.png";
+import nl4Banner from "@/assets/paywise/newsletters/newsletter.4.png";
 
 export type CarouselItem = {
   id: number;
@@ -86,6 +87,9 @@ export type NewsletterItem = {
   banner: string;
   story: string; // 9:16 image
   docUrl: string;
+  body: string;
+  ctaUrl: string;
+  ctaText: string;
 };
 
 // Placeholder — replace `slides` arrays as you upload each carousel.
@@ -202,6 +206,9 @@ export const newsletters: NewsletterItem[] = Array.from({ length: 4 }, (_, i) =>
   banner: "",
   story: "",
   docUrl: "#",
+  body: "",
+  ctaUrl: "",
+  ctaText: "",
 }));
 
 newsletters[0] = {
@@ -209,33 +216,65 @@ newsletters[0] = {
   title: "Your bills don't need a line.",
   preview:
     "End the month without the stress of bill queues. With PayWise, pay T&TEC, WASA, Flow, or Digicel directly from your phone — and use your card. No lines. No fees. No fuss.",
-  banner: email1Banner,
+  banner: nl1Banner,
   story: email1Story,
   docUrl: "#",
+  body: `Hi [First Name],
+
+End the month without the stress of bill queues. With PayWise, you can pay T&TEC, WASA, Flow, or Digicel directly from your phone. And you can use your card now!
+
+No lines. No fees. No fuss.
+
+Thousands of users in Trinidad are already making the switch.
+
+Don't get left behind. Pay from your couch in under 2 minutes.`,
+  ctaUrl: "https://paywise.co/pay-bills-top-up/",
+  ctaText: "Pay your bill now",
 };
 newsletters[1] = {
   id: 2,
   title: "Your customers want to pay by card — you can make it happen.",
   preview: "",
-  banner: email2Banner,
+  banner: nl2Banner,
   story: email2Story,
   docUrl: "#",
+  body: `Hi [First Name],
+
+Every time you say no to card payments, a sale walks out the door.
+
+With PayWise, you can accept card payments instantly via QR or payment link!
+
+You don't need no hardware, no contracts. And is free to download, sign up and use!`,
+  ctaUrl: "https://paywise.co/business/",
+  ctaText: "Enable card payments today",
 };
 newsletters[2] = {
   id: 3,
   title: "Send money to family in Trinidad without paying high fee",
   preview: "",
-  banner: email3Banner,
+  banner: nl3Banner,
   story: email3Story,
   docUrl: "#",
+  body: `Hi [First Name],
+
+PayWise lets you send money home securely, instantly, and Free to Use. No Western Union fees, no delays.`,
+  ctaUrl: "https://paywise.co/send-money-just-like-a-text-messages/",
+  ctaText: "Send money safely today",
 };
 newsletters[3] = {
   id: 4,
   title: "Pay your utility bills fast, safe, and free with PayWise.",
   preview: "",
-  banner: email4Banner,
+  banner: nl4Banner,
   story: email4Story,
   docUrl: "#",
+  body: `Hi [First Name],
+
+Don't let lines, fees, or delays add stress to your day!
+
+PayWise lets you handle all major bills from your phone. All instantly, right inside your phone.`,
+  ctaUrl: "https://paywise.co/pay-bills-top-up/",
+  ctaText: "Settle your bills now",
 };
 
 export const meta = {
