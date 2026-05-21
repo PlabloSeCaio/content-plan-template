@@ -388,6 +388,34 @@ function Index() {
                   </a>
                 </Button>
               )}
+
+              {/* Instagram Story */}
+              {n.story && (
+                <div className="mt-3 flex items-center justify-between gap-4">
+                  <p className="text-sm text-muted-foreground">Instagram Story</p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setLightbox({
+                        src: n.story,
+                        alt: `${n.title} story`,
+                        aspect: "portrait",
+                        downloadFilename: `paywise-newsletter-${n.id}-story.png`,
+                      })
+                    }
+                    className="w-16 shrink-0"
+                    aria-label={`Open ${n.title} story`}
+                  >
+                    <ImageOrPlaceholder
+                      src={n.story}
+                      alt={`${n.title} story`}
+                      aspect="portrait"
+                      label="Story"
+                      downloadFilename={`paywise-newsletter-${n.id}-story.png`}
+                    />
+                  </button>
+                </div>
+              )}
             </article>
           ))}
         </div>
